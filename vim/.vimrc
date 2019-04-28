@@ -91,6 +91,8 @@ hi tsxAttrib ctermfg=2 cterm=italic gui=italic guifg=#859900
 
 set hlsearch
 
+set timeoutlen=250
+
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-o> :Files<CR>
 nnoremap <C-i> :Buffers<CR>

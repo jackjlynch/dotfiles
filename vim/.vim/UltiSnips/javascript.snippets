@@ -1,0 +1,34 @@
+global !p
+def function_with_closure_annotation(snip):
+	line = snip.buffer[snip.line]
+	start = snip.snippet_start[1]
+	end = snip.snippet_end[1]
+	snip.buffer[snip.line] =  line[:start] + line[(end + 1 if end + 1 < len(line) else len(line)):]
+	args = line[start:end]
+	has_return_value = args[-1] == 'r'
+	number_of_arguments = int(args[:-1]) if has_return_value else int(args)
+	snippet_body = ''
+	tab_stop = 2
+
+	if has_return_value or number_of_arguments > 0:
+		snippet_body += '/**\n'
+		for _ in range(number_of_arguments):
+			snippet_body += ' * @param \\{{${}}} ${}\n'.format(tab_stop, tab_stop + 1)
+			tab_stop += 2
+
+		if has_return_value:
+			snippet_body += ' * @return \\{{${}}}\n'.format(tab_stop)
+
+		snippet_body += ' */\n'
+
+	snippet_body += '$1({}) \\{{\n'.format(', '.join(map(lambda x: '$' + str(x), range(3, tab_stop + 1, 2))))
+	snippet_body += '  $0\n'
+	snippet_body += '}'
+	
+	snip.expand_anon(snippet_body)
+endglobal
+
+post_jump "function_with_closure_annotation(snip)"
+snippet "f(\d*)(r?)" "A function with closure annotations." br
+`!p snip.rv = '{}{}'.format(match.group(1) if match.group(1) else 0, match.group(2))`
+endsnippet

@@ -13,10 +13,10 @@ set colorcolumn=140
 set tw=140
 
 " 24bit color settings
-set termguicolors
+" set termguicolors
 "" set Vim-specific sequences for RGB colors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 
 call plug#begin('~/.vim/plugged')
@@ -41,10 +41,9 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'mileszs/ack.vim'
-"Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
-
 
 call plug#end()
 
@@ -63,9 +62,6 @@ set shiftwidth=2
 set expandtab
 " indent correctly
 set softtabstop=2
-
-inoremap jk <Esc>
-tnoremap jk <c-\><c-n>
 
 set scrolloff=8
 set sidescrolloff=15
@@ -92,6 +88,9 @@ hi tsxAttrib ctermfg=2 cterm=italic gui=italic guifg=#859900
 set hlsearch
 
 set timeoutlen=250
+
+inoremap jk <Esc>
+tnoremap jk <c-\><c-n>
 
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-o> :Files<CR>
@@ -124,8 +123,8 @@ function! YcmOnDeleteChar()
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-let g:UltiSnipsSnippetsDir='/home/jalyn/.vim/UltiSnips'
-let g:UltiSnipsSnippetDirectories=['/home/jalyn/.vim/UltiSnips']
+let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
+let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips']
 let g:UltiSnipsListSnippets='<c-l>'
 
 
@@ -135,6 +134,8 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 
 nnoremap <C-e> :NERDTreeToggle<CR>
+
+let g:NERDSpaceDelims = 1
 
 set nowrap
 set showmatch
@@ -167,8 +168,6 @@ command! -bang Gbranch call fzf#run({
             \ 'source': 'git branch -a --no-color | grep -v "^\* " ', 
             \ 'sink': function('s:changebranch')
 						\ })
-
-
 
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/

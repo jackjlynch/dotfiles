@@ -13,10 +13,10 @@ set colorcolumn=140
 set tw=140
 
 " 24bit color settings
-" set termguicolors
+set termguicolors
 "" set Vim-specific sequences for RGB colors
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 
 call plug#begin('~/.vim/plugged')
@@ -44,13 +44,17 @@ Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
+Plug 'morhetz/gruvbox'
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
 syntax enable
 set background=dark
-let g:solarized_use16=1
-colorscheme solarized8
+" let g:solarized_use16=1
+" colorscheme solarized8
+let g:gruvbox_italic=1
+colorscheme gruvbox
 
 " indentation and tabs to two spaces:
 filetype plugin indent on
@@ -133,7 +137,7 @@ let g:UltiSnipsListSnippets='<c-l>'
 
 
 " airline options
-let g:airline_theme='solarized'
+" let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 

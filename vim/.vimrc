@@ -98,13 +98,17 @@ nnoremap <C-i> :Buffers<CR>
 nnoremap <C-m> :Marks<CR>
 " enter somehow ended up bound to :Marks
 nnoremap <CR> <CR>
+nnoremap <leader>gb :Gbranch<cr>
+nnoremap <leader>n :noh<cr>
+nnoremap <leader>r :YcmCompleter RefactorRename 
+nnoremap <leader>gd :leftabove vertical YcmCompleter GoTo<cr>
+nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
+nnoremap <leader>f :YcmCompleter FixIt<cr>
 
 inoremap <leader><c-u> <esc>viwUea
 nnoremap <leader><c-u> viwUe
 nnoremap oo o<esc>k
 nnoremap OO O<esc>j
-nnoremap <leader>gb :Gbranch<cr>
-nnoremap <leader>n :noh<cr>
 
 cnoreabbrev Ack Ack!
 
@@ -123,8 +127,8 @@ function! YcmOnDeleteChar()
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
-let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips']
+let g:UltiSnipsSnippetsDir=$HOME . '/.vim/UltiSnips'
+let g:UltiSnipsSnippetDirectories=[$HOME . '/.vim/UltiSnips']
 let g:UltiSnipsListSnippets='<c-l>'
 
 
@@ -150,6 +154,7 @@ let g:fzf_layout = { 'down': '~20%' }
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
+let g:ycm_goto_buffer_command='split-or-existing-window'
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 set completeopt-=preview

@@ -46,6 +46,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
 Plug 'chrisbra/Colorizer'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -55,6 +56,7 @@ set background=dark
 " colorscheme solarized8
 let g:gruvbox_italic=1
 colorscheme gruvbox
+let g:colorizer_auto_filetype='css,html'
 
 " indentation and tabs to two spaces:
 filetype plugin indent on

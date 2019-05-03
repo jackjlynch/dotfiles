@@ -109,6 +109,10 @@ if [[ "$(whoami)" == "jalyn" ]]; then
     dtrun test --target=release_x64 $1 --no-retry-failure
     cp -r ~/edge/src/out/release_x64/layout-test-results /mnt/d/
   }
+
+  function edge_or_chromium {
+    pwd | awk -F / '{print $4}'
+  }
 fi
 
 if [[ "$(cat /proc/version)" == *"microsoft"* ]]; then

@@ -55,6 +55,7 @@ set background=dark
 " colorscheme solarized8
 let g:gruvbox_italic=1
 colorscheme gruvbox
+let g:indentLine_setConceal = 0
 
 " indentation and tabs to two spaces:
 filetype plugin indent on
@@ -80,14 +81,14 @@ nmap <F1> <nop>
 " tsx syntax highlighting
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
-hi tsxTagName ctermfg=1 guifg=#d30102
+" hi tsxTagName ctermfg=1 guifg=#d30102
 
-hi tsxCloseString ctermfg=6 guifg=#2aa198
-hi tsxCloseTag ctermfg=6 guifg=#2aa198
-hi tsxAttributeBraces ctermfg=6 guifg=#2aa198
-hi tsxEqual ctermfg=6 guifg=#2aa198
+" hi tsxCloseString ctermfg=6 guifg=#2aa198
+" hi tsxCloseTag ctermfg=6 guifg=#2aa198
+" hi tsxAttributeBraces ctermfg=6 guifg=#2aa198
+" hi tsxEqual ctermfg=6 guifg=#2aa198
 
-hi tsxAttrib ctermfg=2 cterm=italic gui=italic guifg=#859900
+" hi tsxAttrib ctermfg=2 cterm=italic gui=italic guifg=#859900
 
 set hlsearch
 

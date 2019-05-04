@@ -9,6 +9,11 @@ set number relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
+:augroup unfold
+:  autocmd!
+:  autocmd Syntax * normal zR
+:augroup END
+
 set colorcolumn=140
 set tw=140
 

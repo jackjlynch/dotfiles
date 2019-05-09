@@ -82,11 +82,16 @@ set sidescroll=1
 set fileformat=unix
 set fileformats=unix,dos
 
+" don't kill windowless buffers
+set hidden
+
 " no help menu
 nmap <F1> <nop>
 
 " tsx syntax highlighting
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+
+let g:ale_linters = { 'javascript': ['eslint', 'tsserver'] }
 
 " hi tsxTagName ctermfg=1 guifg=#d30102
 

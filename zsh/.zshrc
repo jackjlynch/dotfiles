@@ -134,15 +134,17 @@ alias gpu="git push -u origin \$(git symbolic-ref --short HEAD)"
 
 unsetopt histverify
 
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-  if [ -x "$(command -v nvr)" ]; then
-    alias nvim=nvr
-  fi
-fi
-
 export PATH=${HOME}/.local/bin:$PATH
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  if [ -x "$(command -v nvr)" ]; then
+    alias nvim=nvr
+    export EDITOR=nvr
+    export GIT_EDITOR=nvr
+  fi
+fi

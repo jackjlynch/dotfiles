@@ -52,6 +52,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
 Plug 'chrisbra/Colorizer'
 Plug 'easymotion/vim-easymotion'
+Plug 'direnv/direnv.vim'
 
 call plug#end()
 
@@ -92,6 +93,8 @@ nmap <F1> <nop>
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
 let g:ale_linters = { 'javascript': ['eslint', 'tsserver'] }
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 
 " hi tsxTagName ctermfg=1 guifg=#d30102
 
@@ -111,10 +114,10 @@ tnoremap jk <c-\><c-n>
 
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-o> :Files<CR>
-nnoremap <C-i> :Buffers<CR>
-nnoremap <C-m> :Marks<CR>
+" nnoremap <C-i> :Buffers<CR>
+" nnoremap <C-m> :Marks<CR>
 " enter somehow ended up bound to :Marks
-nnoremap <CR> <CR>
+" nnoremap <CR> <CR>
 nnoremap <leader>gb :Gbranch<cr>
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>r :YcmCompleter RefactorRename 

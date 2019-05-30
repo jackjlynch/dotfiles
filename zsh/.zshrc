@@ -145,6 +145,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   if [ -x "$(command -v nvr)" ]; then
     alias nvim=nvr
     export EDITOR=nvr
-    export GIT_EDITOR=nvr
+    export GIT_EDITOR='nvr -cc split --remote-wait'
   fi
 fi

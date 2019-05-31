@@ -106,6 +106,7 @@ if [[ "$(whoami)" == "jalyn" ]]; then
   export PATH=${HOME}/bin:${HOME}/edge/depot_tools/scripts:${HOME}/edge/depot_tools:$GOMACLIENTDIR:$PATH
   export NINJA_STATUS='[%r running, %f/%t @ %c/s %o/s : %es ]'
   export DEVTOOLS_BUILD_FLAVOR=release_x64
+  export AT_WORK=1
   alias gngen=gngen.sh
   alias cmd="(cd /mnt/c/Users/JALYN && cmd.exe)"
 

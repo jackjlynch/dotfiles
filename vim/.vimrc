@@ -179,6 +179,9 @@ let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 if $AT_WORK
   let g:ycm_extra_conf_globlist=[$HOME . '/chromium/.ycm_extra_conf.py']
+  source ${HOME}/chromium/src/tools/vim/filetypes.vim
+  source ${HOME}/chromium/src/tools/vim/ninja-build.vim
+  source ${HOME}/chromium/src/tools/vim/clang-format.vim
 endif
 set completeopt-=preview
 

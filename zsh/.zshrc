@@ -115,7 +115,7 @@ if [[ "$(whoami)" == "jalyn" ]]; then
     if is_edge; then
       target="release_x64"
     fi
-    dtrun test --target=$target $1 --no-retry-failure
+    dtrun test --target=$target http/tests/devtools/${1} --no-retry-failure
   }
 
   function is_edge {

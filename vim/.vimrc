@@ -14,6 +14,11 @@ set number relativenumber
 :  autocmd Syntax * normal zR
 :augroup END
 
+:augroup nvr
+:  autocmd!
+:  autocmd FileType gitcommit set bufhidden=delete
+:augroup END
+
 set colorcolumn=140
 set tw=140
 

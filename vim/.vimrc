@@ -91,9 +91,6 @@ set fileformats=unix,dos
 " don't kill windowless buffers
 set hidden
 
-" no help menu
-nmap <F1> <nop>
-
 " tsx syntax highlighting
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
@@ -117,12 +114,11 @@ set timeoutlen=250
 inoremap jk <Esc>
 tnoremap jk <c-\><c-n>
 
+nnoremap <f1> <nop>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-o> :Files<CR>
-" nnoremap <C-i> :Buffers<CR>
-" nnoremap <C-m> :Marks<CR>
-" enter somehow ended up bound to :Marks
-" nnoremap <CR> <CR>
+nnoremap <tab> :Buffers<CR>
+nnoremap <CR> :Marks<CR>
 nnoremap <leader>gb :Gbranch<cr>
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>r :YcmCompleter RefactorRename 

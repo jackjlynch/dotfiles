@@ -149,3 +149,7 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     export GIT_EDITOR='nvr -cc split --remote-wait'
   fi
 fi
+
+if [ -n "$VIMRUNTIME" ]; then
+  direnv reload
+fi

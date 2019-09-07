@@ -37,7 +37,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdcommenter'
 Plug 'wesQ3/vim-windowswap'
 Plug 'raimondi/delimitmate'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
@@ -58,6 +58,8 @@ Plug 'morhetz/gruvbox'
 Plug 'chrisbra/Colorizer'
 Plug 'easymotion/vim-easymotion'
 Plug 'direnv/direnv.vim'
+Plug 'tpope/vim-eunuch'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -87,6 +89,8 @@ set sidescroll=1
 
 set fileformat=unix
 set fileformats=unix,dos
+set nofixendofline
+" set noendofline binary
 
 " don't kill windowless buffers
 set hidden
@@ -117,14 +121,25 @@ tnoremap jk <c-\><c-n>
 nnoremap <f1> <nop>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-o> :Files<CR>
-nnoremap <tab> :Buffers<CR>
-nnoremap <CR> :Marks<CR>
+" nnoremap <tab> :Buffers<CR>
+" nnoremap <CR> :Marks<CR>
 nnoremap <leader>gb :Gbranch<cr>
 nnoremap <leader>n :noh<cr>
-nnoremap <leader>r :YcmCompleter RefactorRename 
-nnoremap <leader>gd :leftabove vertical YcmCompleter GoTo<cr>
-nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
-nnoremap <leader>f :YcmCompleter FixIt<cr>
+" nnoremap <leader>r :YcmCompleter RefactorRename 
+" nnoremap <leader>gd :leftabove vertical YcmCompleter GoTo<cr>
+" nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
+" nnoremap <leader>f :YcmCompleter FixIt<cr>
+nnoremap <leader>r <Plug>(coc-rename)
+nnoremap <leader>gd <Plug>(coc-definition)
+nnoremap <leader>gr <Plug>(coc-references)
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nnoremap <leader>cq :cclose<cr>
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 inoremap <leader><c-u> <esc>viwUea
 nnoremap <leader><c-u> viwUe
@@ -156,7 +171,7 @@ let g:UltiSnipsListSnippets='<c-l>'
 " airline options
 " let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 
 nnoremap <C-e> :NERDTreeToggle<CR>
 
@@ -182,7 +197,7 @@ if $AT_WORK
   let g:ycm_extra_conf_globlist=[$HOME . '/chromium/.ycm_extra_conf.py']
   source ${HOME}/chromium/src/tools/vim/filetypes.vim
   source ${HOME}/chromium/src/tools/vim/ninja-build.vim
-  source ${HOME}/chromium/src/tools/vim/clang-format.vim
+  " source ${HOME}/chromium/src/tools/vim/clang-format.vim
 endif
 set completeopt-=preview
 

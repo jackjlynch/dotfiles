@@ -150,6 +150,8 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   fi
 fi
 
+source /usr/share/fzf/shell/key-bindings.zsh
+
 if [ -n "$VIMRUNTIME" ]; then
   direnv reload
 fi

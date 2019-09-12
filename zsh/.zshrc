@@ -110,6 +110,9 @@ if [[ "$(whoami)" == "jalyn" ]]; then
   alias gngen=gngen.sh
   alias cmd="(cd /mnt/c/Users/JALYN && cmd.exe)"
 
+	alias edge_server="(cd ~/edge/src/third_party/blink/renderer/devtools && npm run server)"
+	alias chromium_server="(cd ~/chromium/src/third_party/blink/renderer/devtools && npm run server)"
+
   function dtt {
     target="Default"
     if is_edge; then
@@ -126,11 +129,11 @@ fi
 
 if [[ "$(cat /proc/version)" == *"microsoft"* ]]; then
   export WINDOWS_IP="$(route -n | awk 'NR==3{print $2}')"
-  export DISPLAY=$WINDOWS_IP:0.0
+  # export DISPLAY=$WINDOWS_IP:0.0
 fi
 
-alias gn=git-number
-alias ga="git-number add"
+# alias gn=git-number
+# alias ga="git-number add"
 alias gpu="git push -u origin \$(git symbolic-ref --short HEAD)"
 
 unsetopt histverify
@@ -151,6 +154,15 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
 fi
 
 source /usr/share/fzf/shell/key-bindings.zsh
+
+# fbr - checkout git branch
+# from https://github.com/junegunn/fzf/wiki/examples#git
+fbr() {
+  local branches branch
+  branches=$(git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
 
 if [ -n "$VIMRUNTIME" ]; then
   direnv reload

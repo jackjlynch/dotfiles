@@ -150,14 +150,14 @@ cnoreabbrev Ack Ack!
 
 " YouCompleteMe  + delimitMate backspace workaround
 " https://github.com/Valloric/YouCompleteMe/issues/2696
-imap <silent> <BS> <C-R>=YcmOnDeleteChar()<CR><Plug>delimitMateBS
+" imap <silent> <BS> <C-R>=YcmOnDeleteChar()<CR><Plug>delimitMateBS
 
-function! YcmOnDeleteChar()
-    if pumvisible()
-          return "\<C-y>"
-            endif
-              return "" 
-            endfunction
+" function! YcmOnDeleteChar()
+    " if pumvisible()
+          " return "\<C-y>"
+            " endif
+              " return "" 
+            " endfunction
 
 " UltiSnips triggering
 let g:UltiSnipsExpandTrigger = '<c-j>'

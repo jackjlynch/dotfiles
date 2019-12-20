@@ -106,6 +106,7 @@ if [[ "$(whoami)" == "jalyn" ]]; then
   export PATH=${HOME}/bin:${HOME}/edge/depot_tools/scripts:${HOME}/edge/depot_tools:$GOMACLIENTDIR:$PATH
   export NINJA_STATUS='[%r running, %f/%t @ %c/s %o/s : %es ]'
   export DEVTOOLS_BUILD_FLAVOR=release_x64
+  export PYTHONPATH=${HOME}/.local/lib/python3.6/site-packages/
   export AT_WORK=1
   alias gngen=gngen.sh
   alias cmd="(cd /mnt/c/Users/JALYN && cmd.exe)"
@@ -129,7 +130,7 @@ fi
 
 if [[ "$(cat /proc/version)" == *"microsoft"* ]]; then
   export WINDOWS_IP="$(route -n | awk 'NR==3{print $2}')"
-  # export DISPLAY=$WINDOWS_IP:0.0
+  export DISPLAY=$WINDOWS_IP:0.0
 fi
 
 # alias gn=git-number
@@ -153,7 +154,9 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   fi
 fi
 
-source /usr/share/fzf/shell/key-bindings.zsh
+if [[ ! $AT_WORK ]]; then
+  source /usr/share/fzf/shell/key-bindings.zsh
+fi
 
 # fbr - checkout git branch
 # from https://github.com/junegunn/fzf/wiki/examples#git

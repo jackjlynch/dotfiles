@@ -103,16 +103,20 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ "$(whoami)" == "jalyn" ]]; then
   export GOMACLIENTDIR=${HOME}/tools/gomaclient/goma-linux
-  export PATH=${HOME}/bin:${HOME}/edge/depot_tools/scripts:${HOME}/edge/depot_tools:$GOMACLIENTDIR:$PATH
+  export PATH=${HOME}/bin:$GOMACLIENTDIR:$PATH
   export NINJA_STATUS='[%r running, %f/%t @ %c/s %o/s : %es ]'
   export DEVTOOLS_BUILD_FLAVOR=release_x64
   export PYTHONPATH=${HOME}/.local/lib/python3.6/site-packages/
+  export ES_TELEMETRY_WARN_PSUTIL=0
+  export NINJA_CHECK_ARGS_GN=0
   export AT_WORK=1
   alias gngen=gngen.sh
   alias cmd="(cd /mnt/c/Users/JALYN && cmd.exe)"
 
 	alias edge_server="(cd ~/edge/src/third_party/blink/renderer/devtools && npm run server)"
 	alias chromium_server="(cd ~/chromium/src/third_party/blink/renderer/devtools && npm run server)"
+
+  alias chranary="/mnt/c/Users/JALYN/AppData/Local/Google/Chrome\ SxS/Application/chrome.exe" 
 
   function dtt {
     target="Default"
@@ -149,7 +153,7 @@ eval "$(direnv hook zsh)"
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   if [ -x "$(command -v nvr)" ]; then
     alias nvim=nvr
-    export EDITOR=nvr
+    export EDITOR='nvr -cc split --remote-wait'
     export GIT_EDITOR='nvr -cc split --remote-wait'
   fi
 fi

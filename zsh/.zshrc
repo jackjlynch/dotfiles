@@ -106,17 +106,19 @@ if [[ "$(whoami)" == "jalyn" ]]; then
   export PATH=${HOME}/bin:$GOMACLIENTDIR:$PATH
   export NINJA_STATUS='[%r running, %f/%t @ %c/s %o/s : %es ]'
   export DEVTOOLS_BUILD_FLAVOR=release_x64
-  export PYTHONPATH=${HOME}/.local/lib/python3.6/site-packages/
   export ES_TELEMETRY_WARN_PSUTIL=0
   export NINJA_CHECK_ARGS_GN=0
   export AT_WORK=1
   alias gngen=gngen.sh
   alias cmd="(cd /mnt/c/Users/JALYN && cmd.exe)"
+  alias gcdesc="PYTHONPATH=~/.local/lib/python3.6/site-packages/ git cl desc"
+  alias gcup="PYTHONPATH=~/.local/lib/python3.6/site-packages/ git cl upload"
 
 	alias edge_server="(cd ~/edge/src/third_party/blink/renderer/devtools && npm run server)"
 	alias chromium_server="(cd ~/chromium/src/third_party/blink/renderer/devtools && npm run server)"
 
-  alias chranary="/mnt/c/Users/JALYN/AppData/Local/Google/Chrome\ SxS/Application/chrome.exe" 
+  alias chranary="/mnt/c/Users/JALYN/AppData/Local/Google/Chrome\ SxS/Application/chrome.exe"
+  alias canary="/mnt/c/Users/JALYN/AppData/Local/Microsoft/Edge\ SxS/Application/msedge.exe"
 
   function dtt {
     target="Default"
@@ -134,11 +136,9 @@ fi
 
 if [[ "$(cat /proc/version)" == *"microsoft"* ]]; then
   export WINDOWS_IP="$(route -n | awk 'NR==3{print $2}')"
-  export DISPLAY=$WINDOWS_IP:0.0
+  # export DISPLAY=$WINDOWS_IP:0.0
 fi
 
-# alias gn=git-number
-# alias ga="git-number add"
 alias gpu="git push -u origin \$(git symbolic-ref --short HEAD)"
 
 unsetopt histverify

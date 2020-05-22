@@ -203,5 +203,23 @@ command! -bang Gbranch call fzf#run({
             \ 'sink': function('s:changebranch')
 						\ })
 
+function! s:getClipboard()
+  let rawText = system('powershell.exe -command get-clipboard')
+  return split(rawText, '\n')
+endfunction
+
+let g:clipboard = {
+      \   'name': 'wslClipboard',
+      \   'copy': {
+      \     '+': 'clip.exe',
+      \     '*': 'clip.exe',
+      \   },
+      \   'paste': {
+      \     '+': {->s:getClipboard()},
+      \     '*': {->s:getClipboard()},
+      \   },
+      \   'cache_enabled': 1,
+      \ }
+
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/

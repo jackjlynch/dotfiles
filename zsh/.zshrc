@@ -147,6 +147,7 @@ export PATH=${HOME}/.local/bin:$PATH
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 
 eval "$(direnv hook zsh)"
 
@@ -158,9 +159,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   fi
 fi
 
-if [[ ! $AT_WORK ]]; then
-  source /usr/share/fzf/shell/key-bindings.zsh
-fi
 
 # fbr - checkout git branch
 # from https://github.com/junegunn/fzf/wiki/examples#git

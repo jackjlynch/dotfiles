@@ -48,7 +48,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'mileszs/ack.vim'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
@@ -93,9 +93,9 @@ set hidden
 " tsx syntax highlighting
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
-let g:ale_linters = { 'javascript': ['eslint', 'tsserver'] }
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
+" let g:ale_linters = { 'javascript': ['eslint', 'tsserver'] }
+" let g:ale_lint_on_text_changed = 'normal'
+" let g:ale_lint_on_insert_leave = 1
 
 " hi tsxTagName ctermfg=1 guifg=#d30102
 
@@ -123,6 +123,7 @@ nnoremap <leader>n :noh<cr>
 nmap <leader>r <Plug>(coc-rename)
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
+nmap <leader>f <Plug>(coc-fix-current)
 imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u<Plug>delimitMateCR"
 
 nnoremap <leader>cq :cclose<cr>

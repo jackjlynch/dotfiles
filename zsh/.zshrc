@@ -108,6 +108,7 @@ if [[ "$(whoami)" == "jalyn" ]]; then
   export DEVTOOLS_BUILD_FLAVOR=release_x64
   export ES_TELEMETRY_WARN_PSUTIL=0
   export NINJA_CHECK_ARGS_GN=0
+  export NINJA_CHECK_ALL_TARGET=0
   export AT_WORK=1
   alias gngen=gngen.sh
   alias cmd="(cd /mnt/c/Users/JALYN && cmd.exe)"
@@ -119,6 +120,7 @@ if [[ "$(whoami)" == "jalyn" ]]; then
 
   alias chranary="/mnt/c/Users/JALYN/AppData/Local/Google/Chrome\ SxS/Application/chrome.exe"
   alias canary="/mnt/c/Users/JALYN/AppData/Local/Microsoft/Edge\ SxS/Application/msedge.exe"
+  alias dev="/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge\ Dev/Application/msedge.exe"
 
   function dtt {
     target="Default"
@@ -136,7 +138,7 @@ fi
 
 if [[ "$(cat /proc/version)" == *"microsoft"* ]]; then
   export WINDOWS_IP="$(route -n | awk 'NR==3{print $2}')"
-  # export DISPLAY=$WINDOWS_IP:0.0
+  export DISPLAY=$WINDOWS_IP:0.0
 fi
 
 alias gpu="git push -u origin \$(git symbolic-ref --short HEAD)"
@@ -144,6 +146,9 @@ alias gpu="git push -u origin \$(git symbolic-ref --short HEAD)"
 unsetopt histverify
 
 export PATH=${HOME}/.local/bin:$PATH
+if [ -x "$(command -v yarn)" ]; then
+  export PATH=$PATH:$(yarn global bin)
+fi
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -159,6 +164,10 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   fi
 fi
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fbr - checkout git branch
 # from https://github.com/junegunn/fzf/wiki/examples#git

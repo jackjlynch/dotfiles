@@ -127,6 +127,7 @@ nmap <leader>f <Plug>(coc-fix-current)
 imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u<Plug>delimitMateCR"
 
 nnoremap <leader>cq :cclose<cr>
+nnoremap <leader>ch :ColorHighlight<cr>
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

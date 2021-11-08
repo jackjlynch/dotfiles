@@ -181,16 +181,14 @@ let g:fzf_layout = { 'down': '~20%' }
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
-if $AT_WORK
-  " let g:ycm_extra_conf_globlist=[$HOME . '/chromium/.ycm_extra_conf.py']
+if filereadable(${HOME}/chromium/src/tools/vim/filetypes.vim)
   source ${HOME}/chromium/src/tools/vim/filetypes.vim
-  " source ${HOME}/chromium/src/tools/vim/ninja-build.vim
-  " source ${HOME}/chromium/src/tools/vim/clang-format.vim
 endif
+
 set completeopt-=preview
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag -f --vimgrep'
 endif
 
 " from https://vi.stackexchange.com/questions/5921/easiest-way-to-switch-git-branches
@@ -209,18 +207,18 @@ function! s:getClipboard()
   return split(rawText, '\n')
 endfunction
 
-let g:clipboard = {
-      \   'name': 'wslClipboard',
-      \   'copy': {
-      \     '+': 'clip.exe',
-      \     '*': 'clip.exe',
-      \   },
-      \   'paste': {
-      \     '+': {->s:getClipboard()},
-      \     '*': {->s:getClipboard()},
-      \   },
-      \   'cache_enabled': 1,
-      \ }
+" let g:clipboard = {
+      " \   'name': 'wslClipboard',
+      " \   'copy': {
+      " \     '+': 'clip.exe',
+      " \     '*': 'clip.exe',
+      " \   },
+      " \   'paste': {
+      " \     '+': {->s:getClipboard()},
+      " \     '*': {->s:getClipboard()},
+      " \   },
+      " \   'cache_enabled': 1,
+      " \ }
 
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/

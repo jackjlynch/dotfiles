@@ -101,44 +101,30 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [[ "$(whoami)" == "jalyn" ]]; then
-  export GOMACLIENTDIR=${HOME}/tools/gomaclient/goma-linux
-  export PATH=${HOME}/bin:$GOMACLIENTDIR:$PATH
-  export NINJA_STATUS='[%r running, %f/%t @ %c/s %o/s : %es ]'
-  export DEVTOOLS_BUILD_FLAVOR=release_x64
-  export ES_TELEMETRY_WARN_PSUTIL=0
-  export NINJA_CHECK_ARGS_GN=0
-  export NINJA_CHECK_ALL_TARGET=0
-  export AT_WORK=1
-  alias gngen=gngen.sh
-  alias cmd="(cd /mnt/c/Users/JALYN && cmd.exe)"
-  alias gcdesc="PYTHONPATH=~/.local/lib/python3.6/site-packages/ git cl desc"
-  alias gcup="PYTHONPATH=~/.local/lib/python3.6/site-packages/ git cl upload"
+export GOMACLIENTDIR=${HOME}/edge/depot_tools/.cipd_bin
+export PATH=${HOME}/bin:$GOMACLIENTDIR:$PATH
+export NINJA_STATUS='[%r running, %f/%t @ %c/s %o/s : %es ]'
+export DEVTOOLS_BUILD_FLAVOR=release_x64
+export ES_TELEMETRY_WARN_PSUTIL=0
+export NINJA_CHECK_ARGS_GN=0
+export NINJA_CHECK_ALL_TARGET=0
+alias gngen=gngen.sh
+alias cmd="(cd /mnt/c/Users/JALYN && cmd.exe)"
+alias gcdesc="PYTHONPATH=~/.local/lib/python3.8/site-packages/ git cl desc"
+alias gcup="PYTHONPATH=~/.local/lib/python3.8/site-packages/ git cl upload"
 
-	alias edge_server="(cd ~/edge/src/third_party/blink/renderer/devtools && npm run server)"
-	alias chromium_server="(cd ~/chromium/src/third_party/blink/renderer/devtools && npm run server)"
+alias chranary="/mnt/c/Users/JALYN/AppData/Local/Google/Chrome\ SxS/Application/chrome.exe"
+alias canary="/mnt/c/Users/JALYN/AppData/Local/Microsoft/Edge\ SxS/Application/msedge.exe"
+alias dev="/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge\ Dev/Application/msedge.exe"
 
-  alias chranary="/mnt/c/Users/JALYN/AppData/Local/Google/Chrome\ SxS/Application/chrome.exe"
-  alias canary="/mnt/c/Users/JALYN/AppData/Local/Microsoft/Edge\ SxS/Application/msedge.exe"
-  alias dev="/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge\ Dev/Application/msedge.exe"
-
-  function dtt {
-    target="Default"
-    if is_edge; then
-      target="release_x64"
-    fi
-    dtrun test --target=$target http/tests/devtools/${1} --no-retry-failure
-  }
-
-  function is_edge {
-    [[ "$(pwd | awk -F / '{print $4}')" == 'edge' ]]
-    return
-  }
-fi
+function is_edge {
+  [[ "$(pwd | awk -F / '{print $4}')" == 'edge' ]]
+  return
+}
 
 if [[ "$(cat /proc/version)" == *"microsoft"* ]]; then
   export WINDOWS_IP="$(route -n | awk 'NR==3{print $2}')"
-  export DISPLAY=$WINDOWS_IP:0.0
+  # export DISPLAY=$WINDOWS_IP:0.0
 fi
 
 alias gpu="git push -u origin \$(git symbolic-ref --short HEAD)"
@@ -150,7 +136,7 @@ if [ -x "$(command -v yarn)" ]; then
   export PATH=$PATH:$(yarn global bin)
 fi
 export EDITOR=nvim
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='ag -f -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 

@@ -31,7 +31,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 call plug#begin('~/.vim/plugged')
 
-Plug '~/.fzf'
+" Plug '~/.fzf'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'wesQ3/vim-windowswap'
@@ -40,6 +40,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'lifepillar/vim-solarized8'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
@@ -55,7 +56,7 @@ Plug 'morhetz/gruvbox'
 Plug 'chrisbra/Colorizer'
 Plug 'easymotion/vim-easymotion'
 Plug 'direnv/direnv.vim'
-Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-eunuch'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
@@ -124,7 +125,9 @@ nmap <leader>r <Plug>(coc-rename)
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>f <Plug>(coc-fix-current)
-imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u<Plug>delimitMateCR"
+imap <expr><cr> pumvisible()
+      \ ? "\<C-y>"
+      \ : "\<C-g>u<Plug>delimitMateCR"
 
 nnoremap <leader>cq :cclose<cr>
 nnoremap <leader>ch :ColorHighlight<cr>

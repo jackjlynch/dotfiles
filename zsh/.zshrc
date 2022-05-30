@@ -164,6 +164,6 @@ fbr() {
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
-if [ -n "$VIMRUNTIME" ]; then
+if [ -n "$VIMRUNTIME" ] && [ -f ".envrc" ]; then
   direnv reload
 fi

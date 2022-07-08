@@ -101,8 +101,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export GOMACLIENTDIR=${HOME}/edge/depot_tools/.cipd_bin
-export PATH=${HOME}/bin:$GOMACLIENTDIR:$PATH
+export GOMACLIENTDIR=${HOME}/chromium/depot_tools/.cipd_bin
+export PATH=${HOME}/bin:${HOME}/chromium/depot_tools:$GOMACLIENTDIR:$PATH
 export NINJA_STATUS='[%r running, %f/%t @ %c/s %o/s : %es ]'
 export DEVTOOLS_BUILD_FLAVOR=release_x64
 export ES_TELEMETRY_WARN_PSUTIL=0
@@ -127,6 +127,10 @@ if [[ "$(cat /proc/version)" == *"microsoft"* ]]; then
   # export DISPLAY=$WINDOWS_IP:0.0
 fi
 
+if [[ "$(cat /proc/version)" == *"glinux"* ]]; then
+  export SKIP_GCE_AUTH_FOR_GIT=1
+fi
+
 alias gpu="git push -u origin \$(git symbolic-ref --short HEAD)"
 
 unsetopt histverify
@@ -142,11 +146,11 @@ export FZF_DEFAULT_COMMAND='ag -f -g ""'
 
 eval "$(direnv hook zsh)"
 
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+if [ -n "$NVIM" ]; then
   if [ -x "$(command -v nvr)" ]; then
     alias nvim=nvr
-    export EDITOR='nvr -cc split --remote-wait'
-    export GIT_EDITOR='nvr -cc split --remote-wait'
+    export EDITOR='PYTHONPATH=~/.local/lib/python3.10/site-packages nvr -cc split --remote-wait'
+    export GIT_EDITOR=$EDITOR
   fi
 fi
 

@@ -185,7 +185,7 @@ let g:fzf_layout = { 'down': '~20%' }
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
-if filereadable('${HOME}/chromium/src/tools/vim/filetypes.vim')
+if filereadable($HOME . '/chromium/src/tools/vim/filetypes.vim')
   source ${HOME}/chromium/src/tools/vim/filetypes.vim
 endif
 

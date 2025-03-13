@@ -49,7 +49,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'mileszs/ack.vim'
-" Plug 'w0rp/ale'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
@@ -58,6 +57,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'direnv/direnv.vim'
 " Plug 'tpope/vim-eunuch'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
@@ -94,10 +94,6 @@ set hidden
 " tsx syntax highlighting
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
-" let g:ale_linters = { 'javascript': ['eslint', 'tsserver'] }
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_lint_on_insert_leave = 1
-
 " hi tsxTagName ctermfg=1 guifg=#d30102
 
 " hi tsxCloseString ctermfg=6 guifg=#2aa198
@@ -114,6 +110,9 @@ set timeoutlen=250
 inoremap jk <Esc>
 tnoremap jk <c-\><c-n>
 
+" workaround to keep escape sequence out of terminal
+tnoremap <S-Space> <Space>
+
 nnoremap <f1> <nop>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-o> :Files<CR>
@@ -121,21 +120,30 @@ nnoremap <C-o> :Files<CR>
 " nnoremap <CR> :Marks<CR>
 nnoremap <leader>gb :Gbranch<cr>
 nnoremap <leader>n :noh<cr>
+nnoremap <leader>t :tabs<cr>
 nmap <leader>r <Plug>(coc-rename)
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>f <Plug>(coc-fix-current)
-imap <expr><cr> pumvisible()
-      \ ? "\<C-y>"
-      \ : "\<C-g>u<Plug>delimitMateCR"
+" imap <expr><cr> pumvisible()
+      " \ ? "\<C-y>"
+      " \ : "\<C-g>u<Plug>delimitMateCR"
 
 nnoremap <leader>cq :cclose<cr>
 nnoremap <leader>ch :ColorHighlight<cr>
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 inoremap <leader><c-u> <esc>viwUea
 nnoremap <leader><c-u> viwUe
@@ -144,11 +152,6 @@ nnoremap OO O<esc>j
 nnoremap <leader>p :set paste!<cr>
 
 cnoreabbrev Ack Ack!
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 " coc.nvim settings
 set cmdheight=2

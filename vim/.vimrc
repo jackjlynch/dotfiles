@@ -42,7 +42,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
@@ -144,15 +144,6 @@ cnoreabbrev Ack Ack!
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
-
-" UltiSnips triggering
-let g:UltiSnipsExpandTrigger = '<c-j>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-let g:UltiSnipsSnippetsDir=$HOME . '/.vim/UltiSnips'
-let g:UltiSnipsSnippetDirectories=[$HOME . '/.vim/UltiSnips']
-let g:UltiSnipsListSnippets='<c-l>'
-
 
 " airline options
 let g:airline#extensions#tabline#enabled=1

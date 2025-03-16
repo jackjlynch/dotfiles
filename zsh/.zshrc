@@ -114,6 +114,9 @@ if [ -x "$(command -v yarn)" ]; then
 fi
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='ag -f -g ""'
+if [ -x "$(command -v rg)" ]; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
@@ -150,3 +153,5 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+eval "$(fnm env --use-on-cd --shell zsh)"

@@ -106,26 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# export GOMACLIENTDIR=${HOME}/chromium/depot_tools/.cipd_bin
-# export PATH=${HOME}/bin:${HOME}/chromium/depot_tools:$GOMACLIENTDIR:$PATH
-export NINJA_STATUS='[%r running, %f/%t @ %c/s %o/s : %es ]'
-alias gcdesc="PYTHONPATH=~/.local/lib/python3.8/site-packages/ git cl desc"
-alias gcup="PYTHONPATH=~/.local/lib/python3.8/site-packages/ git cl upload"
-
-if ! [[ $OSTYPE == 'darwin'* ]]; then
-  if [[ "$(cat /proc/version)" == *"microsoft"* ]]; then
-    export WINDOWS_IP="$(route -n | awk 'NR==3{print $2}')"
-    # export DISPLAY=$WINDOWS_IP:0.0
-  fi
-
-  if [[ "$(cat /proc/version)" == *"glinux"* ]]; then
-    export SKIP_GCE_AUTH_FOR_GIT=1
-  fi
-fi
-
-
-alias gpu="git push -u origin \$(git symbolic-ref --short HEAD)"
-
 unsetopt histverify
 
 export PATH=${HOME}/.local/bin:$PATH
@@ -167,14 +147,6 @@ if [ -n "$VIMRUNTIME" ] && [ -f ".envrc" ]; then
   direnv reload
 fi
 
-# bun completions
-[ -s "/Users/bytedance/.bun/_bun" ] && source "/Users/bytedance/.bun/_bun"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-export ANDROID_HOME=/Users/bytedance/Library/Android/sdk
-export ANDROID_AVD_HOME=/Users/bytedance/.android/avd
-export JAVA_HOME=$(/usr/libexec/java_home)
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools

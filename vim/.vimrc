@@ -31,8 +31,6 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 call plug#begin('~/.vim/plugged')
 
-" Plug '~/.fzf'
-
 Plug 'scrooloose/nerdcommenter'
 Plug 'wesQ3/vim-windowswap'
 Plug 'raimondi/delimitmate'
@@ -55,7 +53,6 @@ Plug 'morhetz/gruvbox'
 Plug 'chrisbra/Colorizer'
 Plug 'easymotion/vim-easymotion'
 Plug 'direnv/direnv.vim'
-" Plug 'tpope/vim-eunuch'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'udalov/kotlin-vim'
 
@@ -86,22 +83,12 @@ set sidescroll=1
 set fileformat=unix
 set fileformats=unix,dos
 set nofixendofline
-" set noendofline binary
 
 " don't kill windowless buffers
 set hidden
 
 " tsx syntax highlighting
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-
-" hi tsxTagName ctermfg=1 guifg=#d30102
-
-" hi tsxCloseString ctermfg=6 guifg=#2aa198
-" hi tsxCloseTag ctermfg=6 guifg=#2aa198
-" hi tsxAttributeBraces ctermfg=6 guifg=#2aa198
-" hi tsxEqual ctermfg=6 guifg=#2aa198
-
-" hi tsxAttrib ctermfg=2 cterm=italic gui=italic guifg=#859900
 
 set hlsearch
 
@@ -188,10 +175,6 @@ let g:fzf_layout = { 'down': '~20%' }
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
-if filereadable($HOME . '/chromium/src/tools/vim/filetypes.vim')
-  source ${HOME}/chromium/src/tools/vim/filetypes.vim
-endif
-
 set completeopt-=preview
 
 if executable('ag')
@@ -208,24 +191,6 @@ command! -bang Gbranch call fzf#run({
             \ 'source': 'git branch -a --no-color | grep -v "^\* " ', 
             \ 'sink': function('s:changebranch')
 						\ })
-
-function! s:getClipboard()
-  let rawText = system('powershell.exe -command get-clipboard')
-  return split(rawText, '\n')
-endfunction
-
-" let g:clipboard = {
-      " \   'name': 'wslClipboard',
-      " \   'copy': {
-      " \     '+': 'clip.exe',
-      " \     '*': 'clip.exe',
-      " \   },
-      " \   'paste': {
-      " \     '+': {->s:getClipboard()},
-      " \     '*': {->s:getClipboard()},
-      " \   },
-      " \   'cache_enabled': 1,
-      " \ }
 
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/

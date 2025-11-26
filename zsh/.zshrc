@@ -155,3 +155,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(fnm env --use-on-cd --shell zsh)"
+
+# Added by Antigravity
+export PATH="/Users/jack/.antigravity/antigravity/bin:$PATH"
